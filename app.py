@@ -1,24 +1,17 @@
 import streamlit as st
-from PIL import Image
-import time
 
-# App title
-st.title("Streamlit Demo on Hugging Face")
+st.title("Streamlit Demo App")
+st.header("User Input Section")
 
-# Write some text
-st.write("Welcome to a demo app showcasing basic Streamlit components!")
+st.write("Please provide your details below:")
 
-# File uploader for image and audio
-uploaded_image = st.file_uploader("Upload an image",
-                                  type=["jpg", "jpeg", "png"])
+age = st.number_input("Enter your age:",
+                      min_value=0,
+                      max_value=120,
+                      value=25)
+color = st.selectbox("Choose your favorite color:",
+                     ["Red", "Blue", "Green"])
 
-# Display image with spinner
-if uploaded_image is not None:
-    with st.spinner("Loading image..."):
-        time.sleep(1)  # Simulate a delay
-        image = Image.open(uploaded_image)
-        st.image(image, caption="Uploaded Image", use_column_width=True)
-
-# Button interaction
-if st.button("Click Me"):
-    st.write("🎉 You clicked the button!")  
+if st.button("Submit"):
+    st.success(f"Thank you! Age: {age}, Favorite Color: {color}")
+  
